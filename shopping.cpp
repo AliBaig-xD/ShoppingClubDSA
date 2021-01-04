@@ -47,6 +47,22 @@ struct node *head=NULL;
 	cout<<"\t\t\tEnter product quantity:-";
 	cin>>quant;
 	t->quantity=quant;
+	
+	fstream new_file;
+	new_file.open("Products.txt",ios::app);   
+	if(!new_file) 
+	{
+		cout<<"File creation failed";
+	}
+	else
+	{
+		new_file<<t->ID<<"\t\t"<<t->proName<<"\t\t\t"<<t->prePrice<<"\t\t\t"<<check(t->quantity)<<"\n";
+		new_file.close(); 
+	}
+	
+	
+	
+	
 	if(head==NULL)
 	{
 		t->next=head;
@@ -336,8 +352,21 @@ void administator()
 	                        //        Main function
 int main()
 {
+    fstream new_file;
+	new_file.open("Products.txt",ios::app);   
+	if(!new_file) 
+	{
+		cout<<"File creation failed";
+	}
+	else
+	{
+		new_file<<"ID\t\tProduct Name\t\tPrice\t\tQuantity\n";
+		new_file<<"================================================================================|\n";
+		new_file.close(); 
+	}
     
-    for(int i=0;i<=51;i++)
+	
+	for(int i=0;i<=51;i++)
      	push(i);
 	
 	system("color 0C");     //  for console color
